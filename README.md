@@ -1,13 +1,14 @@
 ## userテーブル
 |Column|Type|Option|
 |------|----|------|
-|name|strings|null: false, unique: true|
-|emil|strings|null: false, unique: true|
-|password|strings|null: false|
+|name|string|null: false, unique: true|
+|emil|string|null: false, unique: true|
+|password|string|null: false|
 
 ### Association
-has_many :group_user
-has_many :message
+has_many :group_users
+has_many :groups, through:groups_users
+has_many :messages
 
 
 ## messageテーブル
@@ -16,7 +17,7 @@ has_many :message
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_kye: true|
 |body|text|
-|image|strings|
+|image|string|
 
 ### Association
 belongs_to :user
@@ -25,12 +26,12 @@ belongs_to :group
 ## groupテーブル
 |Column|Type|Option|
 |------|----|------|
-|group_name|strings|null: false, unique: true|
+|name|string|null: false, unique: true|
 
 ### Association
-has_many :user
-has_many :group_user
-has_many :message
+has_many :users, through: groups_users
+has_many :groups_users
+has_many :messages
 
 
 ## groups_usersテーブル
