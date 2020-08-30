@@ -1,0 +1,24 @@
+.chat-main
+  .chat-main__group-info
+    .raight-header__group
+      .raight-group-name
+        textchat
+      .raight-group-member
+        Member: hoge
+    .raight-header__edit-botton
+      = link_to "#", class: "edit-btn" do
+        Edit
+  .chat-main__message-list
+    .message-box
+      .message-info
+        .message-name test84
+        .message-date 2020年08月26日 02時42分
+      .message aiueo
+  .chat-main__message-form
+    %form.new-message
+      .write-box
+        %input{type:"text", class: "write-box__text", placeholder:"type a message"}
+        %label{class:"write-box__image"}
+          = icon('fas', 'image')
+          %input{type: "file", class: "write-box__image__file"}
+      %input{type: "submit", class: "submit-btn"}
