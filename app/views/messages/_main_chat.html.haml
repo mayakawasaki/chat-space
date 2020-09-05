@@ -2,23 +2,20 @@
   .chat-main__group-info
     .raight-header__group
       .raight-group-name
-        textchat
+        = @group.name
       .raight-group-member
-        Member: hoge
+        - @group.users.each do |user|
+          = user.name
     .raight-header__edit-botton
-      = link_to "#", class: "edit-btn" do
+      = link_to edit_group_path(@group), class: "edit-btn" do
         Edit
   .chat-main__message-list
-    .message-box
-      .message-info
-        .message-name test84
-        .message-date 2020年08月26日 02時42分
-      .message aiueo
+    = render @messages
   .chat-main__message-form
-    %form.new-message
+    =form_with model: [@group, @message], html: {class: "Form"}, local: true do |f|
       .write-box
-        %input{type:"text", class: "write-box__text", placeholder:"type a message"}
-        %label{class:"write-box__image"}
-          = icon('fas', 'image')
-          %input{type: "file", class: "write-box__image__file"}
-      %input{type: "submit", class: "submit-btn"}
+        = f.text_field :content, class: 'write-box__text', placeholder: 'type a message'
+        = f.label :image, class: 'write-box__image' do
+          = icon('far', 'image', class: 'Form__icon')
+          = f.file_field :image, class: 'write-box__image__file'
+      = f.submit 'Send', class: 'submit-btn'
