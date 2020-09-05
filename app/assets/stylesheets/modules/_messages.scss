@@ -133,13 +133,15 @@ a {
     width: calc(100vw - 300px);
     background-color: #d2d2d2;
     padding: 20px 50px 20px 40px;
-    .new-message{
+    .Form{
       display: flex;
+      justify-content: space-between;
       .write-box {
-        display: flex;
         position: relative;
         width: 100%;
+        background-color: #ffffff;
         &__text{
+          position: absolute;
           height: 50px;
           width: 100%;
           color: #434A54;
