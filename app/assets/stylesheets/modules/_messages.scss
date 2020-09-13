@@ -105,6 +105,7 @@ a {
     width: calc(100vw - 300px);
     background-color: #fafafa;
     padding: 35px 40px 0;
+    overflow: scroll;
     .message-box {
       margin-bottom: 46px;
       .message-info {
