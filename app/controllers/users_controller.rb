@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
   
+  def index
+    return nil if params[:kyeword] == ""
+    #LIKE曖昧表現検索
+    @users = User.where(['name LIKE ?', "%#{params[:keyword]}%"] ).where.not(id: current_user.id).limit(10)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def edit
   end
 
