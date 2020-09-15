@@ -1,27 +1,8 @@
-$(function(){
+$(function() {
   function buildHTML(message) {
-    if ( message.image ) {
-        let html =
-          `<div class="message-box">
-            <div class="message-info">
-              <div class="message-name">
-                ${message.user_name}
-              </div>
-              <div class="message-date">
-                ${message.created_at}
-              </div>
-            </div>
-            <div class="message">
-              <p class="message-content">
-                ${message.content}
-              </p>
-              <img class="Message__image" src="${message.image}">
-            </div>
-          </div>`
-        return html;
-      } else {
-        let html =
-        `<div class="message-box">
+  if ( message.image ) {
+      let html =
+        `<div class="message-box" data-message-id=${message.id}>
           <div class="message-info">
             <div class="message-name">
               ${message.user_name}
@@ -34,12 +15,30 @@ $(function(){
             <p class="message-content">
               ${message.content}
             </p>
+            <img class="Message__image" src="${message.image}">
           </div>
         </div>`
-        return html;
-      };
-    }
-
+      return html;
+    } else {
+      let html =
+      `<div class="message-box" data-message-id=${message.id}>
+        <div class="message-info">
+          <div class="message-name">
+            ${message.user_name}
+          </div>
+          <div class="message-date">
+            ${message.created_at}
+          </div>
+        </div>
+        <div class="message">
+          <p class="message-content">
+            ${message.content}
+          </p>
+        </div>
+      </div>`
+      return html;
+    };
+  }
   $(".Form").on("submit",function(e){
     e.preventDefault()
     let formData =new FormData(this);
@@ -63,5 +62,5 @@ $(function(){
       alert("メッセージ送信に失敗しました");
       $('.submit-btn').prop('disabled',false);
     });
-  })
+  });
 });
